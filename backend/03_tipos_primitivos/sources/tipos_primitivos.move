@@ -1,6 +1,7 @@
 module aptosz3::tipos_primitivos {
     use std::debug::print;
 
+//hola
     fun practica() {
         // Enteros (Integers)
         let a = 1; // Cuando el tipo de dato no es especificado, el compilador asume u64.
