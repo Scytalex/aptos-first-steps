@@ -28,9 +28,9 @@ public entry fun restablecer(cuenta: &signer)acquires Contador {
 }
 
 #[view]
-public fun existe(direccion: address): bool {
-    exists<Contador>(direccion)
-}
+// public fun exists(direccion: address): bool {
+//     exists<Contador>(direccion)
+// }
 
 public entry fun eliminar (cuenta: &signer) acquires Contador {
      move_from<Contador>(signer::address_of(cuenta));
