@@ -105,6 +105,28 @@ public entry fun modificar_categoria (account:&signer, titulo:String, categoria:
 	assert!(table::contains(&libros.libros, Titulo{titulo}),REGISTRO_NO_EXISTE);
 	let categoria_actual = &mut table ::borrow_mut(&mut libros.libros, Titulo {titulo}).categoria;
 	*categoria_actual=categoria;
+
+} public entry fun modificar_libro(
+	account: &signer,
+	titulo: String,
+	autor: Option<String>,
+	editorial:Option<String>, 
+	fecha_publicacion: Option<String>,
+	categoria: Option<String>,
+)  acquires Biblioteca {
+	assert!(exists<Biblioteca>(address_of(account)), NO_INICIALIZADO);
+	assert!(is_some(&autor) || is_some(&editorial) || is_some(&fecha_publicacion) || is_some(&categoria), NADA_A_MODIFICAR );
+
+	let libros = borrow_global_mut<Biblioteca>(address_of(account));
+
+	assert! (table::contains(&libros.libros,Titulo {titulo}), REGISTRO_NO_EXISTE);
+	let libros = table::borrow_mut(&mut libros.libros, Titulo {titulo});
+
+	if (is_some(&autor)) libros.autor = *option::borrow(&autor);
+	if (is_some(&editorial)) libros.editorial = *option::borrow(&editorial);
+	if (is_some(&fecha_publicacion)) libros.fecha_publicacion = *option::borrow(&fecha_publicacion);
+	if (is_some(&categoria)) libros.categoria = *option::borrow(&categoria);
+
 }
-  
+   
 }
