@@ -28,7 +28,7 @@ public entry fun restablecer(cuenta: &signer)acquires Contador {
 }
 
 #[view]
-// public fun exists(direccion: address): bool {
+// public fun existe(direccion: address): bool {
 //     exists<Contador>(direccion)
 // }
 
